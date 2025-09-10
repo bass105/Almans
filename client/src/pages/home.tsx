@@ -3,6 +3,7 @@ import HeroSection from "@/components/hero-section";
 import SchoolProfile from "@/components/school-profile";
 import Gallery from "@/components/gallery";
 import AcademicPrograms from "@/components/academic-programs";
+import Extracurricular from "@/components/extracurricular";
 import Achievements from "@/components/achievements";
 import Contact from "@/components/contact";
 import Footer from "@/components/footer";
@@ -38,6 +39,7 @@ export default function Home() {
         <SchoolProfile />
         <Gallery />
         <AcademicPrograms />
+        <Extracurricular />
         <Achievements />
         <Contact />
       </main>

@@ -8,6 +8,7 @@ const navItems = [
   { href: "#profil", label: "Profil" },
   { href: "#galeri", label: "Galeri" },
   { href: "#akademik", label: "Akademik" },
+  { href: "#ekstrakurikuler", label: "Ekstrakurikuler" },
   { href: "#prestasi", label: "Prestasi" },
   { href: "#kontak", label: "Kontak" },
 ];

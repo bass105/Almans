@@ -20,8 +20,8 @@ const galleryItems = [
   {
     id: 3,
     category: "ekstrakurikuler",
-    title: "Olahraga",
-    description: "Pembinaan fisik dan tim work",
+    title: "Tim Sepak Bola",
+    description: "Latihan tim futsal sekolah",
     image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
   },
   {
@@ -58,6 +58,34 @@ const galleryItems = [
     title: "Wisuda",
     description: "Perayaan kelulusan siswa",
     image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    id: 9,
+    category: "ekstrakurikuler",
+    title: "Kaligrafi Arab",
+    description: "Seni menulis khat Islami",
+    image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    id: 10,
+    category: "ekstrakurikuler",
+    title: "Robotika",
+    description: "Klub programming dan robotika",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    id: 11,
+    category: "ekstrakurikuler",
+    title: "Pramuka",
+    description: "Kegiatan kepanduan dan camping",
+    image: "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
+  },
+  {
+    id: 12,
+    category: "ekstrakurikuler",
+    title: "English Club",
+    description: "Praktik bahasa Inggris dan debate",
+    image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=400"
   }
 ];
 
