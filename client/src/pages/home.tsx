@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import SchoolProfile from "@/components/school-profile";
+import NewsAnnouncements from "@/components/news-announcements";
 import Gallery from "@/components/gallery";
 import AcademicPrograms from "@/components/academic-programs";
 import Extracurricular from "@/components/extracurricular";
@@ -37,6 +38,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <SchoolProfile />
+        <NewsAnnouncements />
         <Gallery />
         <AcademicPrograms />
         <Extracurricular />
