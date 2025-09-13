@@ -31,36 +31,38 @@ export default function HeroSection() {
       
       <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 pt-24">
         <div className="relative min-h-screen flex items-center">
-          {/* Background Image with Overlay */}
+          {/* Background Image with Symmetrical Overlay */}
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/20 z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/30 z-10" />
             <img 
               src={schoolProfileImage} 
               alt="Profil Madrasah Aliyah AL-MANSHURIYAH"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center lg:object-[65%_center]"
               data-testid="img-school-profile"
             />
+            {/* Additional overlay for better balance */}
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-background/10 to-background/50 z-[5]" />
           </div>
 
-          {/* Content */}
+          {/* Content - Symmetrical Layout */}
           <div className="relative z-20 w-full">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Side - Large Text */}
+            <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
+              {/* Left Side - Large Text (3 columns) */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
-                className="space-y-8"
+                className="lg:col-span-3 space-y-8"
               >
                 <div className="space-y-6">
                   <motion.h1 
-                    className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-tight tracking-tight"
+                    className="text-display-lg sm:text-display-lg md:text-display-xl lg:text-display-xl xl:text-display-xl leading-none tracking-tighter"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.2 }}
                   >
-                    <div className="text-foreground mb-4">MADRASAH</div>
-                    <div className="text-foreground mb-4">ALIYAH</div>
+                    <div className="text-foreground mb-6 font-black">MADRASAH</div>
+                    <div className="text-foreground mb-6 font-black">ALIYAH</div>
                     <motion.div 
                       className="gradient-text font-black"
                       animate={{
@@ -85,8 +87,8 @@ export default function HeroSection() {
                     transition={{ duration: 1, delay: 0.4 }}
                     className="space-y-2"
                   >
-                    <div className="text-2xl lg:text-3xl font-bold text-primary">Islamic High School</div>
-                    <div className="text-lg text-muted-foreground italic">"Membangun generasi Islami yang unggul dalam ilmu pengetahuan, teknologi, dan akhlaq mulia"</div>
+                    <div className="text-heading-4 font-bold text-primary tracking-wide">Islamic High School</div>
+                    <div className="text-body-lg text-muted-foreground italic leading-relaxed max-w-2xl">"Membangun generasi Islami yang unggul dalam ilmu pengetahuan, teknologi, dan akhlaq mulia"</div>
                   </motion.div>
                 </div>
                 
@@ -99,7 +101,7 @@ export default function HeroSection() {
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <Button
                       size="lg"
-                      className="relative overflow-hidden vibrant-btn text-primary-foreground font-bold text-xl px-10 py-5 rounded-2xl group"
+                      className="relative overflow-hidden vibrant-btn text-primary-foreground text-heading-6 px-12 py-6 rounded-2xl group"
                       onClick={() => document.querySelector("#profil")?.scrollIntoView({ behavior: "smooth" })}
                       data-testid="button-explore-school"
                     >
@@ -126,7 +128,7 @@ export default function HeroSection() {
                     <Button
                       variant="outline"
                       size="lg"
-                      className="relative border-2 border-primary/60 hover:border-primary hover:bg-primary/15 text-foreground font-bold px-10 py-5 text-xl rounded-2xl transition-all duration-300 backdrop-blur-lg group overflow-hidden"
+                      className="relative border-2 border-primary/60 hover:border-primary hover:bg-primary/15 text-foreground text-heading-6 px-12 py-6 rounded-2xl transition-all duration-300 backdrop-blur-lg group overflow-hidden"
                       onClick={() => document.querySelector("#kontak")?.scrollIntoView({ behavior: "smooth" })}
                       data-testid="button-contact-us"
                     >
@@ -136,31 +138,32 @@ export default function HeroSection() {
                 </motion.div>
               </motion.div>
               
-              {/* Right Side - Stats and Info */}
+              {/* Right Side - Stats and Info (2 columns) */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="lg:ml-auto lg:mr-8"
+                className="lg:col-span-2 flex justify-center lg:justify-end"
               >
-                <div className="glass-effect rounded-3xl p-8 backdrop-blur-lg border border-primary/20 shadow-2xl">
-                  <div className="space-y-6">
+                <div className="glass-effect rounded-3xl p-8 lg:p-10 backdrop-blur-lg border border-primary/20 shadow-2xl w-full max-w-md">
+                  <div className="space-y-8">
                     <div className="text-center">
-                      <h3 className="text-2xl font-bold gradient-text mb-2">Profil Sekolah</h3>
-                      <p className="text-muted-foreground">Sejak 1995</p>
+                      <h3 className="text-heading-4 font-bold gradient-text mb-3">Profil Sekolah</h3>
+                      <p className="text-body-md text-muted-foreground">Sejak 1995</p>
                     </div>
                     
-                    <div className="grid grid-cols-3 gap-4 text-center">
+                    <div className="grid grid-cols-1 gap-6 text-center">
                       {stats.map((stat, index) => (
                         <motion.div
                           key={index}
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                          className="space-y-2"
+                          className="space-y-2 p-4 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10 hover:border-primary/20 transition-all duration-300"
+                          data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, "-")}`}
                         >
-                          <div className="text-3xl lg:text-4xl font-black gradient-text">{stat.value}</div>
-                          <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
+                          <div className="text-heading-2 font-black gradient-text">{stat.value}</div>
+                          <div className="text-body-sm text-muted-foreground font-medium tracking-wide">{stat.label}</div>
                         </motion.div>
                       ))}
                     </div>

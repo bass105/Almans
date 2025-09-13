@@ -47,46 +47,60 @@ export default function Navigation() {
     >
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 lg:h-20">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+          {/* Logo - Centered and Symmetrical */}
+          <div className="flex items-center space-x-4">
+            <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group">
               <img 
                 src={schoolLogo} 
                 alt="Logo AL-MANSHURIYAH" 
-                className="w-full h-full object-contain bg-white/10 backdrop-blur-sm rounded-lg"
+                className="w-full h-full object-contain bg-white/10 backdrop-blur-sm rounded-xl group-hover:scale-105 transition-transform duration-300"
                 data-testid="img-school-logo"
               />
             </div>
             <div className="hidden sm:block">
-              <div className="font-bold text-lg gradient-text">AL-MANSHURIYAH</div>
-              <div className="text-xs text-muted-foreground">Madrasah Aliyah</div>
+              <div className="text-heading-6 gradient-text font-bold tracking-wide">AL-MANSHURIYAH</div>
+              <div className="text-caption text-muted-foreground">Madrasah Aliyah</div>
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href);
-                }}
-                className="relative text-foreground hover:text-primary font-medium transition-all duration-300 hover:scale-105 px-2 py-1 rounded-md hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/50"
-                data-testid={`nav-link-${item.label.toLowerCase()}`}
-              >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 hover:w-full"></span>
-              </a>
-            ))}
+          {/* Desktop Navigation - Symmetrical Layout */}
+          <div className="hidden lg:flex items-center justify-center flex-1 mx-8">
+            <div className="flex space-x-6 xl:space-x-8">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
+                  className="relative text-body-md text-foreground hover:text-primary font-medium transition-all duration-300 hover:scale-105 px-3 py-2 rounded-lg hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary/50 tracking-wide"
+                  data-testid={`nav-link-${item.label.toLowerCase()}`}
+                >
+                  {item.label}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 hover:w-full rounded-full"></span>
+                </a>
+              ))}
+            </div>
+          </div>
+          
+          {/* Contact Button for Desktop */}
+          <div className="hidden lg:block">
+            <Button
+              size="sm"
+              className="vibrant-btn text-primary-foreground font-semibold px-6 py-2 rounded-xl hover:scale-105 transition-all duration-300"
+              onClick={() => document.querySelector("#kontak")?.scrollIntoView({ behavior: "smooth" })}
+              data-testid="button-contact-nav"
+            >
+              Hubungi Kami
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-foreground hover:text-accent"
+            className="lg:hidden text-foreground hover:text-accent rounded-xl"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             data-testid="button-mobile-menu"
           >
@@ -96,8 +110,8 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-primary/20">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-effect">
+          <div className="lg:hidden border-t border-primary/20">
+            <div className="px-4 pt-4 pb-6 space-y-2 glass-effect">
               {navItems.map((item) => (
                 <a
                   key={item.href}
@@ -106,12 +120,27 @@ export default function Navigation() {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className="block w-full text-left px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="block w-full text-left px-4 py-3 rounded-xl text-body-md text-foreground hover:text-primary hover:bg-primary/10 font-medium transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50 tracking-wide"
                   data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
                 >
                   {item.label}
                 </a>
               ))}
+              
+              {/* Mobile Contact Button */}
+              <div className="pt-4 border-t border-primary/20">
+                <Button
+                  size="sm"
+                  className="w-full vibrant-btn text-primary-foreground font-semibold py-3 rounded-xl"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    document.querySelector("#kontak")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  data-testid="button-contact-mobile"
+                >
+                  Hubungi Kami
+                </Button>
+              </div>
             </div>
           </div>
         )}
