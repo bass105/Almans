@@ -1,8 +1,7 @@
-const serverless = require('serverless-http');
-const express = require('express');
-const path = require('path');
+import serverless from 'serverless-http';
+import express from 'express';
 
-// Import your Express app
+// Create Express app
 const app = express();
 
 // Basic middleware
@@ -64,5 +63,23 @@ app.get('/api/news/:id', (req, res) => {
   res.json(news);
 });
 
+// Contact form endpoint
+app.post('/api/contact', (req, res) => {
+  const { name, email, subject, message } = req.body;
+  
+  // Basic validation
+  if (!name || !email || !subject || !message) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+  
+  // In a real app, this would save to database
+  console.log('Contact form submission:', { name, email, subject, message });
+  
+  res.json({ 
+    success: true, 
+    message: 'Pesan Anda telah dikirim. Terima kasih!' 
+  });
+});
+
 // Export the serverless function
-module.exports.handler = serverless(app);
+export const handler = serverless(app);
