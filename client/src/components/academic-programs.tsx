@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { FlaskConical, Globe, BookOpen, Scale, Heart, Building2, Microscope, Laptop, Book, Pill } from "lucide-react";
+import { FlaskConical, Globe, BookOpen, Scale, Heart, Building2, Microscope, Laptop, Book, Church, Check } from "lucide-react";
 
 const programs = {
   ipa: {
@@ -69,16 +69,17 @@ const facilities = [
     description: "Koleksi buku digital dan fisik lengkap"
   },
   {
-    icon: Pill,
-    title: "Masjid",
+    icon: Church,
+    title: "Masjid", 
     description: "Pusat kegiatan spiritual dan ibadah"
   }
 ];
 
 export default function AcademicPrograms() {
   return (
-    <section id="akademik" className="py-20 bg-card/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="akademik" className="py-20 bg-background relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -106,14 +107,14 @@ export default function AcademicPrograms() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                <Card className="glass-effect border-border card-hover h-full" data-testid={`program-${key}`}>
+                <Card className="glass-effect border-primary/20 card-hover h-full" data-testid={`program-${key}`}>
                   <CardContent className="p-8">
                     <div className="flex items-center mb-6">
-                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mr-4 ${index === 0 ? 'bg-primary/20' : 'bg-accent/20'}`}>
-                        <IconComponent className={`w-8 h-8 ${index === 0 ? 'text-primary' : 'text-accent'}`} />
+                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mr-4 animate-sparkle ${index === 0 ? 'vibrant-btn' : 'bg-gradient-to-br from-accent to-primary'}`}>
+                        <IconComponent className="w-8 h-8 text-primary-foreground" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-foreground">{program.title}</h3>
+                        <h3 className="text-2xl font-bold gradient-text">{program.title}</h3>
                         <p className="text-muted-foreground">{program.subtitle}</p>
                       </div>
                     </div>
@@ -123,7 +124,7 @@ export default function AcademicPrograms() {
                     <div className="space-y-3">
                       {program.subjects.map((subject, subIndex) => (
                         <div key={subIndex} className="flex items-center">
-                          <i className={`fas fa-check text-sm mr-3 ${index === 0 ? 'text-primary' : 'text-accent'}`}></i>
+                          <Check className={`w-4 h-4 mr-3 flex-shrink-0 ${index === 0 ? 'text-primary' : 'text-accent'}`} />
                           <span className="text-muted-foreground">{subject}</span>
                         </div>
                       ))}
@@ -143,7 +144,7 @@ export default function AcademicPrograms() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <Card className="bg-card border-border" data-testid="islamic-studies">
+          <Card className="glass-effect border-primary/20 card-hover" data-testid="islamic-studies">
             <CardContent className="p-8 lg:p-12">
               <div className="text-center mb-12">
                 <h3 className="text-3xl font-bold mb-4">
@@ -164,7 +165,7 @@ export default function AcademicPrograms() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="text-center p-6 rounded-xl border border-border hover:border-primary/50 transition-colors duration-300"
+                      className="text-center p-6 rounded-xl glass-effect border-primary/20 hover:border-primary/50 transition-all duration-300 card-hover"
                       data-testid={`islamic-subject-${index}`}
                     >
                       <div className={`w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 ${index % 2 === 0 ? 'bg-primary/20' : 'bg-accent/20'}`}>

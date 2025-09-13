@@ -94,8 +94,9 @@ const alumniSuccess = [
 
 export default function Achievements() {
   return (
-    <section id="prestasi" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="prestasi" className="py-20 bg-card/30 relative">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5"></div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -112,7 +113,7 @@ export default function Achievements() {
         </motion.div>
 
         {/* Achievement Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {achievementStats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
@@ -125,8 +126,8 @@ export default function Achievements() {
                 className="text-center"
                 data-testid={`achievement-stat-${index}`}
               >
-                <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 ${stat.color === 'primary' ? 'bg-primary/20' : 'bg-accent/20'}`}>
-                  <IconComponent className={`w-8 h-8 ${stat.color === 'primary' ? 'text-primary' : 'text-accent'}`} />
+                <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-pulse-glow ${stat.color === 'primary' ? 'vibrant-btn' : 'bg-gradient-to-br from-accent to-primary'}`}>
+                  <IconComponent className={`w-8 h-8 text-primary-foreground`} />
                 </div>
                 <div className={`text-3xl font-bold mb-2 ${stat.color === 'primary' ? 'text-primary' : 'text-accent'}`}>{stat.value}</div>
                 <div className="text-muted-foreground">{stat.label}</div>
@@ -144,9 +145,9 @@ export default function Achievements() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Card className="glass-effect border-border" data-testid="academic-achievements">
+            <Card className="glass-effect border-primary/20 card-hover" data-testid="academic-achievements">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-6">Prestasi Akademik</h3>
+                <h3 className="text-2xl font-bold gradient-text mb-6">Prestasi Akademik</h3>
                 <div className="space-y-6">
                   {academicAchievements.map((achievement, index) => {
                     const IconComponent = achievement.icon;

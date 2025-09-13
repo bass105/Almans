@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Eye, Target, Star } from "lucide-react";
+import { Eye, Target, Star, Check } from "lucide-react";
 
 const profileData = {
   vision: "Menjadi madrasah unggul yang menghasilkan lulusan beriman, bertakwa, berakhlaq mulia, dan berprestasi dalam ilmu pengetahuan dan teknologi.",
@@ -63,10 +63,10 @@ export default function SchoolProfile() {
           >
             <Card className="glass-effect border-border card-hover h-full" data-testid="card-vision">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                  <Eye className="text-primary w-8 h-8" />
+                <div className="w-16 h-16 vibrant-btn rounded-2xl flex items-center justify-center mb-6 animate-sparkle">
+                  <Eye className="text-primary-foreground w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Visi</h3>
+                <h3 className="text-2xl font-bold mb-4 gradient-text">Visi</h3>
                 <p className="text-muted-foreground leading-relaxed">
                   {profileData.vision}
                 </p>
@@ -83,14 +83,14 @@ export default function SchoolProfile() {
           >
             <Card className="glass-effect border-border card-hover h-full" data-testid="card-mission">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-accent/20 rounded-2xl flex items-center justify-center mb-6">
-                  <Target className="text-accent w-8 h-8" />
+                <div className="w-16 h-16 vibrant-btn rounded-2xl flex items-center justify-center mb-6 animate-pulse-glow">
+                  <Target className="text-primary-foreground w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Misi</h3>
+                <h3 className="text-2xl font-bold mb-4 gradient-text">Misi</h3>
                 <ul className="text-muted-foreground space-y-2">
                   {profileData.mission.map((item, index) => (
                     <li key={index} className="flex items-start">
-                      <i className="fas fa-check text-primary text-sm mt-1 mr-3"></i>
+                      <Check className="text-primary w-4 h-4 mt-0.5 mr-3 flex-shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -108,10 +108,10 @@ export default function SchoolProfile() {
           >
             <Card className="glass-effect border-border card-hover h-full" data-testid="card-values">
               <CardContent className="p-8">
-                <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center mb-6">
-                  <Star className="text-primary w-8 h-8" />
+                <div className="w-16 h-16 vibrant-btn rounded-2xl flex items-center justify-center mb-6 animate-sparkle">
+                  <Star className="text-primary-foreground w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Nilai-Nilai</h3>
+                <h3 className="text-2xl font-bold mb-4 gradient-text">Nilai-Nilai</h3>
                 <div className="space-y-3">
                   {profileData.values.map((value, index) => (
                     <div key={index} className="flex items-center">
@@ -132,14 +132,14 @@ export default function SchoolProfile() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <Card className="bg-card border-border" data-testid="card-history">
+          <Card className="glass-effect border-primary/20 card-hover" data-testid="card-history">
             <CardContent className="p-8 lg:p-12">
               <h3 className="text-3xl font-bold text-center mb-12">
                 <span className="gradient-text">Sejarah</span> Perjalanan
               </h3>
               
               <div className="relative">
-                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-primary/30"></div>
+                <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary"></div>
                 
                 <div className="space-y-12">
                   {profileData.history.map((item, index) => (
@@ -152,7 +152,7 @@ export default function SchoolProfile() {
                       className="relative flex items-start"
                       data-testid={`timeline-item-${item.year}`}
                     >
-                      <div className={`w-16 h-16 rounded-full flex items-center justify-center text-sm font-bold relative z-10 ${index % 2 === 0 ? 'bg-primary text-primary-foreground' : 'bg-accent text-accent-foreground'}`}>
+                      <div className={`w-16 h-16 rounded-full flex items-center justify-center text-sm font-bold relative z-10 animate-pulse-glow ${index % 2 === 0 ? 'vibrant-btn' : 'bg-gradient-to-br from-accent to-primary text-primary-foreground'}`}>
                         {item.year}
                       </div>
                       <div className="ml-8 flex-1">
