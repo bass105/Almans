@@ -12,10 +12,10 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => setShowText(true), 800);
-    const timer2 = setTimeout(() => setShowSubtitle(true), 2000);
-    const timer3 = setTimeout(() => setShowButton(true), 3500);
-    const autoComplete = setTimeout(() => onComplete(), 6500);
+    const timer1 = setTimeout(() => setShowText(true), 1200);
+    const timer2 = setTimeout(() => setShowSubtitle(true), 2500);
+    const timer3 = setTimeout(() => setShowButton(true), 4000);
+    const autoComplete = setTimeout(() => onComplete(), 8000);
 
     return () => {
       clearTimeout(timer1);
@@ -32,20 +32,21 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.8 }}
-        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-primary/10 to-accent/15 overflow-hidden"
+        className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-background via-primary/15 to-accent/20 overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-60"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,hsl(var(--background))_70%)] opacity-90"></div>
         
-        {/* Enhanced floating particles */}
+        {/* Enhanced floating particles with more variety */}
         <div className="absolute inset-0 overflow-hidden">
-          {[...Array(30)].map((_, i) => (
+          {[...Array(40)].map((_, i) => (
             <motion.div
               key={i}
-              className={`absolute rounded-full ${
-                i % 3 === 0 ? 'w-3 h-3 bg-primary/30' : 
-                i % 3 === 1 ? 'w-2 h-2 bg-accent/40' : 
-                'w-1 h-1 bg-gradient-to-r from-primary to-accent'
+              className={`absolute ${
+                i % 4 === 0 ? 'w-4 h-4 bg-primary/40 rounded-full' : 
+                i % 4 === 1 ? 'w-3 h-3 bg-accent/50 rounded-full' : 
+                i % 4 === 2 ? 'w-2 h-2 bg-gradient-to-r from-primary to-accent rounded-full' :
+                'w-1 h-1 bg-gradient-to-r from-accent to-primary rounded-full animate-pulse'
               }`}
               initial={{
                 x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
@@ -60,34 +61,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
                 rotate: 360
               }}
               transition={{
-                duration: Math.random() * 4 + 3,
-                repeat: Infinity,
-                delay: Math.random() * 3,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
-        
-        {/* Cosmic rays */}
-        <div className="absolute inset-0">
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={`ray-${i}`}
-              className="absolute h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent"
-              style={{
-                width: '100vw',
-                top: `${20 + i * 10}%`,
-                left: '-50%',
-                transform: `rotate(${-30 + i * 10}deg)`
-              }}
-              initial={{ opacity: 0, scaleX: 0 }}
-              animate={{ 
-                opacity: [0, 0.6, 0],
-                scaleX: [0, 1, 0]
-              }}
-              transition={{
-                duration: 2 + Math.random() * 2,
+                duration: Math.random() * 5 + 3,
                 repeat: Infinity,
                 delay: Math.random() * 4,
                 ease: "easeInOut"
@@ -95,13 +69,76 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
             />
           ))}
         </div>
+        
+        {/* Enhanced cosmic rays and light beams */}
+        <div className="absolute inset-0">
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`ray-${i}`}
+              className={`absolute ${i % 3 === 0 ? 'h-0.5' : 'h-px'} ${
+                i % 2 === 0 ? 'bg-gradient-to-r from-transparent via-primary/70 to-transparent' :
+                'bg-gradient-to-r from-transparent via-accent/60 to-transparent'
+              }`}
+              style={{
+                width: '120vw',
+                top: `${15 + i * 7}%`,
+                left: '-60%',
+                transform: `rotate(${-45 + i * 8}deg)`
+              }}
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ 
+                opacity: [0, 0.8, 0],
+                scaleX: [0, 1, 0],
+                rotate: [-45 + i * 8, -35 + i * 8, -45 + i * 8]
+              }}
+              transition={{
+                duration: 3 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
+        
+        {/* Floating orbs */}
+        <div className="absolute inset-0">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={`orb-${i}`}
+              className="absolute w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-md"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${30 + i * 8}%`
+              }}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ 
+                opacity: [0, 0.6, 0],
+                scale: [0, 1, 0],
+                x: [-20, 20, -20],
+                y: [-10, 10, -10]
+              }}
+              transition={{
+                duration: 4 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          {/* Enhanced Logo */}
+          {/* Enhanced Logo with more dramatic entrance */}
           <motion.div
-            initial={{ scale: 0, rotate: -180, opacity: 0 }}
-            animate={{ scale: 1, rotate: 0, opacity: 1 }}
-            transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+            initial={{ scale: 0, rotate: -360, opacity: 0, y: 100 }}
+            animate={{ scale: 1, rotate: 0, opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 1.5, 
+              type: "spring", 
+              bounce: 0.4,
+              delay: 0.3
+            }}
             className="mb-8 relative"
           >
             {/* Outer glow ring */}

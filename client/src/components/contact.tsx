@@ -102,8 +102,12 @@ export default function Contact() {
   };
 
   return (
-    <section id="kontak" className="py-20 bg-card/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="kontak" className="py-24 lg:py-32 bg-card/30 relative overflow-hidden">
+      {/* Cyberpunk background effects */}
+      <div className="cyberpunk-neon-grid opacity-30"></div>
+      <div className="neon-moving-circles"></div>
+      
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -152,8 +152,8 @@ export default function TeacherStaff() {
           })}
         </motion.div>
 
-        {/* Teachers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 lg:gap-12">
+        {/* Teachers Grid - Symmetric Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-12 lg:gap-16 justify-items-center place-items-center max-w-7xl mx-auto">
           {filteredTeachers.map((teacher, index) => (
             <motion.div
               key={teacher.id}
@@ -166,21 +166,21 @@ export default function TeacherStaff() {
                 {/* Card background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <CardContent className="p-10 relative z-10">
+                <CardContent className="p-8 lg:p-10 relative z-10 w-full max-w-[380px] mx-auto">
                   <div className="text-center mb-8">
-                    <div className="w-44 h-44 rounded-3xl overflow-hidden mx-auto mb-8 ring-4 ring-primary/40 shadow-2xl relative group">
+                    <div className="w-48 h-48 lg:w-52 lg:h-52 rounded-full overflow-hidden mx-auto mb-8 ring-4 ring-primary/40 shadow-2xl relative group transform hover:scale-105 transition-transform duration-500">
                       {/* Photo glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
                       <img
                         src={teacher.photo}
                         alt={`${teacher.name} - ${teacher.position}`}
-                        className="w-full h-full object-cover transition-all duration-500 hover:scale-110 relative z-10 rounded-2xl"
+                        className="w-full h-full object-cover object-center transition-all duration-500 hover:scale-110 relative z-10"
                         data-testid={`teacher-photo-${teacher.id}`}
                       />
                       
                       {/* Overlay gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     <h3 className="text-xl font-bold gradient-text mb-4 leading-tight">{teacher.name}</h3>
                     <Badge className="vibrant-btn mb-8 px-4 py-2 text-sm" data-testid={`teacher-position-${teacher.id}`}>
