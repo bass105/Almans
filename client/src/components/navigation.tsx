@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import schoolLogo from "@assets/generated_images/School_logo_design_2676cd42.png";
 
 const navItems = [
   { href: "#beranda", label: "Beranda" },
@@ -44,14 +45,19 @@ export default function Navigation() {
       )}
       data-testid="navigation-main"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 vibrant-btn rounded-lg flex items-center justify-center animate-sparkle">
-              <i className="fas fa-mosque text-primary-foreground text-lg"></i>
+            <div className="w-12 h-12 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <img 
+                src={schoolLogo} 
+                alt="Logo AL-MANSHURIYAH" 
+                className="w-full h-full object-contain bg-white/10 backdrop-blur-sm rounded-lg"
+                data-testid="img-school-logo"
+              />
             </div>
-            <div>
+            <div className="hidden sm:block">
               <div className="font-bold text-lg gradient-text">AL-MANSHURIYAH</div>
               <div className="text-xs text-muted-foreground">Madrasah Aliyah</div>
             </div>

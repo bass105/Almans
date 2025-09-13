@@ -30,16 +30,16 @@ export default function HeroSection() {
       <div className="absolute bottom-1/3 left-1/3 w-10 h-10 bg-gradient-to-br from-primary/40 to-accent/40 rounded-full animate-float opacity-60" style={{ animationDelay: "5s" }}></div>
       
       <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 pt-24">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-screen">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-h-screen py-8 lg:py-0">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-8 text-center lg:text-left"
           >
             <div className="space-y-6">
               <motion.h1 
-                className="text-5xl lg:text-8xl font-black leading-tight tracking-tight"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight tracking-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2 }}
@@ -61,10 +61,10 @@ export default function HeroSection() {
                   Madrasah Aliyah
                 </motion.span>
                 <br />
-                <div className="flex items-center gap-6 flex-wrap">
+                <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 justify-center lg:justify-start">
                   <span className="text-foreground">AL-MANSHURIYAH</span>
                   <motion.div 
-                    className="w-28 h-28 lg:w-36 lg:h-36 rounded-2xl overflow-hidden ring-4 ring-primary/40 flex-shrink-0 relative group shadow-2xl"
+                    className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-52 xl:h-52 rounded-3xl overflow-hidden ring-4 ring-primary/50 mx-auto flex-shrink-0 relative group shadow-2xl"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -87,7 +87,7 @@ export default function HeroSection() {
                 </div>
               </motion.h1>
               <motion.p 
-                className="text-xl lg:text-2xl text-foreground/80 max-w-xl leading-relaxed font-medium"
+                className="text-lg sm:text-xl lg:text-2xl text-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.4 }}
