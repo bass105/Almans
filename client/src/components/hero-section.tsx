@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import schoolProfileImage from "@assets/generated_images/school_profile_photo.jpg";
 
 export default function HeroSection() {
   const stats = [
@@ -30,7 +31,17 @@ export default function HeroSection() {
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight">
                 <span className="gradient-text">Madrasah Aliyah</span>
                 <br />
-                <span className="text-foreground">AL-MANSHURIYAH</span>
+                <div className="flex items-center gap-6 flex-wrap">
+                  <span className="text-foreground">AL-MANSHURIYAH</span>
+                  <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden ring-4 ring-primary/30 flex-shrink-0">
+                    <img 
+                      src={schoolProfileImage} 
+                      alt="Profil Madrasah Aliyah AL-MANSHURIYAH"
+                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      data-testid="img-school-profile"
+                    />
+                  </div>
+                </div>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg">
                 Membangun generasi Islami yang unggul dalam ilmu pengetahuan, teknologi, dan akhlaq mulia untuk masa depan yang gemilang.

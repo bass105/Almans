@@ -1,8 +1,10 @@
 import Navigation from "@/components/navigation";
+import IntroScreen from "@/components/intro-screen";
 import HeroSection from "@/components/hero-section";
 import SchoolProfile from "@/components/school-profile";
 import NewsAnnouncements from "@/components/news-announcements";
 import Gallery from "@/components/gallery";
+import GallerySlideshow from "@/components/gallery-slideshow";
 import AcademicPrograms from "@/components/academic-programs";
 import TeacherStaff from "@/components/teacher-staff";
 import Extracurricular from "@/components/extracurricular";
@@ -15,6 +17,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,12 +37,15 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      {showIntro && <IntroScreen onComplete={() => setShowIntro(false)} />}
+      
       <Navigation />
       
       <main>
         <HeroSection />
         <SchoolProfile />
         <NewsAnnouncements />
+        <GallerySlideshow />
         <Gallery />
         <AcademicPrograms />
         <TeacherStaff />
