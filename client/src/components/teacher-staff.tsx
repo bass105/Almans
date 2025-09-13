@@ -101,10 +101,14 @@ export default function TeacherStaff() {
     : teachers.filter(teacher => teacher.category === selectedCategory);
 
   return (
-    <section id="guru-staf" className="py-20 bg-card/30 relative">
+    <section id="guru-staf" className="py-24 lg:py-32 bg-card/30 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5"></div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Cyberpunk background effects */}
+      <div className="cyberpunk-neon-grid opacity-40"></div>
+      <div className="neon-pulse-bg"></div>
+      
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -149,7 +153,7 @@ export default function TeacherStaff() {
         </motion.div>
 
         {/* Teachers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 lg:gap-12">
           {filteredTeachers.map((teacher, index) => (
             <motion.div
               key={teacher.id}
@@ -162,9 +166,9 @@ export default function TeacherStaff() {
                 {/* Card background effect */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <CardContent className="p-8 relative z-10">
-                  <div className="text-center mb-6">
-                    <div className="w-32 h-32 rounded-2xl overflow-hidden mx-auto mb-4 ring-4 ring-primary/30 shadow-xl relative group">
+                <CardContent className="p-10 relative z-10">
+                  <div className="text-center mb-8">
+                    <div className="w-44 h-44 rounded-3xl overflow-hidden mx-auto mb-8 ring-4 ring-primary/40 shadow-2xl relative group">
                       {/* Photo glow effect */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                       
@@ -178,8 +182,8 @@ export default function TeacherStaff() {
                       {/* Overlay gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
                     </div>
-                    <h3 className="text-xl font-bold gradient-text mb-2 leading-tight">{teacher.name}</h3>
-                    <Badge className="vibrant-btn mb-6 px-4 py-2 text-sm" data-testid={`teacher-position-${teacher.id}`}>
+                    <h3 className="text-xl font-bold gradient-text mb-4 leading-tight">{teacher.name}</h3>
+                    <Badge className="vibrant-btn mb-8 px-4 py-2 text-sm" data-testid={`teacher-position-${teacher.id}`}>
                       {teacher.position}
                     </Badge>
                   </div>

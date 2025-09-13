@@ -36,8 +36,12 @@ const profileData = {
 
 export default function SchoolProfile() {
   return (
-    <section id="profil" className="py-20 bg-card/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="profil" className="py-24 lg:py-32 bg-card/50 relative overflow-hidden">
+      {/* Cyberpunk background effects */}
+      <div className="cyberpunk-neon-grid"></div>
+      <div className="cyberpunk-lines"></div>
+      <div className="neon-moving-circles"></div>
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +57,7 @@ export default function SchoolProfile() {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid lg:grid-cols-3 gap-12 lg:gap-16 mb-20">
           {/* Vision Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

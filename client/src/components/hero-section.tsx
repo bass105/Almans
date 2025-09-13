@@ -13,6 +13,11 @@ export default function HeroSection() {
     <section id="beranda" className="min-h-screen hero-gradient relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10"></div>
       
+      {/* Cyberpunk background effects */}
+      <div className="cyberpunk-neon-grid opacity-60"></div>
+      <div className="cyberpunk-lines"></div>
+      <div className="neon-moving-circles"></div>
+      
       {/* Enhanced floating geometric shapes */}
       <div className="absolute top-20 left-10 w-24 h-24 bg-gradient-to-br from-primary/40 to-accent/30 rounded-full animate-float animate-pulse-glow blur-lg"></div>
       <div className="absolute top-40 right-20 w-20 h-20 bg-gradient-to-br from-accent/40 to-primary/30 rounded-2xl animate-float blur-lg rotate-45" style={{ animationDelay: "2s" }}></div>
@@ -24,8 +29,8 @@ export default function HeroSection() {
       <div className="absolute top-1/3 right-1/3 w-6 h-6 bg-primary/60 rounded-full animate-float opacity-70" style={{ animationDelay: "3s" }}></div>
       <div className="absolute bottom-1/3 left-1/3 w-10 h-10 bg-gradient-to-br from-primary/40 to-accent/40 rounded-full animate-float opacity-60" style={{ animationDelay: "5s" }}></div>
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
-        <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 pt-24">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-screen">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

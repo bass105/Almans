@@ -245,6 +245,109 @@
   50% { opacity: 1; transform: scale(1.1); }
 }
 
+/* Cyberpunk Neon Effects */
+.cyberpunk-neon-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(0, 204, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 204, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: neon-grid-move 20s linear infinite;
+}
+
+.cyberpunk-lines {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.cyberpunk-lines::before,
+.cyberpunk-lines::after {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 204, 255, 0.8), transparent);
+  animation: neon-line-horizontal 8s ease-in-out infinite;
+}
+
+.cyberpunk-lines::before {
+  top: 20%;
+  animation-delay: 0s;
+}
+
+.cyberpunk-lines::after {
+  bottom: 30%;
+  animation-delay: 4s;
+}
+
+.neon-pulse-bg {
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(0, 204, 255, 0.15) 0%,
+    rgba(0, 150, 255, 0.08) 40%,
+    transparent 70%
+  );
+  animation: neon-pulse-expand 6s ease-in-out infinite;
+}
+
+.neon-moving-circles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.neon-moving-circles::before,
+.neon-moving-circles::after {
+  content: '';
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 204, 255, 0.2) 0%,
+    rgba(0, 150, 255, 0.1) 30%,
+    transparent 70%
+  );
+  animation: neon-circle-move 15s ease-in-out infinite;
+}
+
+.neon-moving-circles::before {
+  top: -150px;
+  left: -150px;
+  animation-delay: 0s;
+}
+
+.neon-moving-circles::after {
+  bottom: -150px;
+  right: -150px;
+  animation-delay: 7.5s;
+}
+
+@keyframes neon-grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+@keyframes neon-line-horizontal {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes neon-pulse-expand {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.2); opacity: 0.6; }
+}
+
+@keyframes neon-circle-move {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(200px, -100px) scale(1.3); opacity: 0.7; }
+  100% { transform: translate(400px, 50px) scale(1); opacity: 0.3; }
+}
+
 /* Motion safety for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .gradient-text {
@@ -267,7 +370,11 @@
   
   .animate-float,
   .animate-sparkle,
-  .animate-pulse-glow {
+  .animate-pulse-glow,
+  .cyberpunk-neon-grid,
+  .cyberpunk-lines,
+  .neon-moving-circles,
+  .neon-pulse-bg {
     animation: none;
   }
   

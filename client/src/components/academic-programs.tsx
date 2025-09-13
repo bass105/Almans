@@ -77,9 +77,14 @@ const facilities = [
 
 export default function AcademicPrograms() {
   return (
-    <section id="akademik" className="py-20 bg-background relative">
+    <section id="akademik" className="py-24 lg:py-32 bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5"></div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {/* Cyberpunk background effects */}
+      <div className="cyberpunk-lines opacity-50"></div>
+      <div className="neon-pulse-bg"></div>
+      
+      <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
