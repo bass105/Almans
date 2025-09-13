@@ -52,9 +52,9 @@ export default function Home() {
       {showBackToTop && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 w-12 h-12 rounded-full z-50 shadow-lg hover:scale-110 transition-all duration-300"
+          className="fixed bottom-8 right-8 w-12 h-12 rounded-full z-50 vibrant-btn neon-glow animate-pulse-glow"
           size="icon"
-          data-testid="button-back-to-top"
+          data-testid="back-to-top"
         >
           <ArrowUp className="w-6 h-6" />
         </Button>

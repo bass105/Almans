@@ -100,8 +100,8 @@ export default function NewsAnnouncements() {
             viewport={{ once: true }}
             className="mb-16"
           >
-            <h3 className="text-2xl font-bold text-foreground mb-8 flex items-center">
-              <Star className="w-6 h-6 text-primary mr-2" />
+            <h3 className="text-2xl font-bold gradient-text mb-8 flex items-center">
+              <Star className="w-6 h-6 text-primary mr-2 animate-sparkle" />
               Berita Utama
             </h3>
             

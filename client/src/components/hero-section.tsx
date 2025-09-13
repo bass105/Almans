@@ -13,9 +13,10 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10"></div>
       
       {/* Floating geometric shapes */}
-      <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full animate-float"></div>
-      <div className="absolute top-40 right-20 w-16 h-16 bg-accent/20 rounded-lg animate-float" style={{ animationDelay: "2s" }}></div>
-      <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary/30 rounded-full animate-float" style={{ animationDelay: "4s" }}></div>
+      <div className="absolute top-20 left-10 w-20 h-20 bg-primary/30 rounded-full animate-float animate-pulse-glow blur-sm"></div>
+      <div className="absolute top-40 right-20 w-16 h-16 bg-accent/30 rounded-lg animate-float blur-sm" style={{ animationDelay: "2s" }}></div>
+      <div className="absolute bottom-40 left-20 w-12 h-12 bg-primary/40 rounded-full animate-float animate-sparkle blur-sm" style={{ animationDelay: "4s" }}></div>
+      <div className="absolute bottom-20 right-10 w-14 h-14 bg-gradient-to-br from-primary to-accent rounded-full animate-float blur-sm" style={{ animationDelay: "6s" }}></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24">
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-screen">
@@ -39,7 +40,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 transform hover:scale-105"
+                className="vibrant-btn text-primary-foreground font-bold text-lg px-8 py-4"
                 onClick={() => document.querySelector("#profil")?.scrollIntoView({ behavior: "smooth" })}
                 data-testid="button-explore-school"
               >
@@ -48,7 +49,7 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
-                className="border-border hover:bg-card text-foreground font-semibold transition-all duration-300"
+                className="border-2 border-primary/50 hover:border-primary hover:bg-primary/10 text-foreground font-semibold px-8 py-4 text-lg transition-all duration-300 backdrop-blur-sm"
                 onClick={() => document.querySelector("#prestasi")?.scrollIntoView({ behavior: "smooth" })}
                 data-testid="button-view-achievements"
               >
@@ -80,15 +81,15 @@ export default function HeroSection() {
             className="relative"
           >
             <div className="relative">
-              <div className="w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl card-hover">
+              <div className="w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden glass-effect card-hover">
                 <img
                   src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
                   alt="Modern Islamic school building with contemporary architecture"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                   data-testid="img-school-building"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent rounded-2xl flex items-center justify-center shadow-xl">
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 vibrant-btn rounded-2xl flex items-center justify-center animate-sparkle">
                 <i className="fas fa-graduation-cap text-accent-foreground text-2xl"></i>
               </div>
             </div>

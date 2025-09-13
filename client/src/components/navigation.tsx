@@ -47,11 +47,11 @@ export default function Navigation() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 vibrant-btn rounded-lg flex items-center justify-center animate-sparkle">
               <i className="fas fa-mosque text-primary-foreground text-lg"></i>
             </div>
             <div>
-              <div className="font-bold text-lg text-foreground">AL-MANSHURIYAH</div>
+              <div className="font-bold text-lg gradient-text">AL-MANSHURIYAH</div>
               <div className="text-xs text-muted-foreground">Madrasah Aliyah</div>
             </div>
           </div>
@@ -62,10 +62,11 @@ export default function Navigation() {
               <button
                 key={item.href}
                 onClick={() => handleNavClick(item.href)}
-                className="text-foreground hover:text-accent transition-colors duration-300"
+                className="relative text-foreground hover:text-primary font-medium transition-all duration-300 hover:scale-105 px-2 py-1 rounded-md hover:bg-primary/10"
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
               >
                 {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent transition-all duration-300 hover:w-full"></span>
               </button>
             ))}
           </div>
@@ -84,13 +85,13 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-border">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-card/95 backdrop-blur-md">
+          <div className="md:hidden border-t border-primary/20">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-effect">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => handleNavClick(item.href)}
-                  className="block w-full text-left px-3 py-2 text-foreground hover:text-accent transition-colors duration-300"
+                  className="block w-full text-left px-3 py-2 rounded-lg text-foreground hover:text-primary hover:bg-primary/10 font-medium transition-all duration-300"
                   data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
                 >
                   {item.label}
