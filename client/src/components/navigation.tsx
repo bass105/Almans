@@ -9,6 +9,7 @@ const navItems = [
   { href: "#berita", label: "Berita" },
   { href: "#galeri", label: "Galeri" },
   { href: "#akademik", label: "Akademik" },
+  { href: "#guru-staf", label: "Guru & Staf" },
   { href: "#ekstrakurikuler", label: "Ekstrakurikuler" },
   { href: "#prestasi", label: "Prestasi" },
   { href: "#kontak", label: "Kontak" },

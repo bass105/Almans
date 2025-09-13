@@ -4,6 +4,7 @@ import SchoolProfile from "@/components/school-profile";
 import NewsAnnouncements from "@/components/news-announcements";
 import Gallery from "@/components/gallery";
 import AcademicPrograms from "@/components/academic-programs";
+import TeacherStaff from "@/components/teacher-staff";
 import Extracurricular from "@/components/extracurricular";
 import Achievements from "@/components/achievements";
 import Contact from "@/components/contact";
@@ -41,6 +42,7 @@ export default function Home() {
         <NewsAnnouncements />
         <Gallery />
         <AcademicPrograms />
+        <TeacherStaff />
         <Extracurricular />
         <Achievements />
         <Contact />
