@@ -149,7 +149,7 @@ export default function TeacherStaff() {
         </motion.div>
 
         {/* Teachers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 lg:gap-10">
           {filteredTeachers.map((teacher, index) => (
             <motion.div
               key={teacher.id}
@@ -158,36 +158,45 @@ export default function TeacherStaff() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="glass-effect border-primary/20 card-hover h-full" data-testid={`teacher-card-${teacher.id}`}>
-                <CardContent className="p-6">
+              <Card className="glass-effect border-primary/20 card-hover h-full group relative overflow-hidden" data-testid={`teacher-card-${teacher.id}`}>
+                {/* Card background effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <CardContent className="p-8 relative z-10">
                   <div className="text-center mb-6">
-                    <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 ring-4 ring-primary/20">
+                    <div className="w-32 h-32 rounded-2xl overflow-hidden mx-auto mb-4 ring-4 ring-primary/30 shadow-xl relative group">
+                      {/* Photo glow effect */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      
                       <img
                         src={teacher.photo}
                         alt={`${teacher.name} - ${teacher.position}`}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                        className="w-full h-full object-cover transition-all duration-500 hover:scale-110 relative z-10 rounded-2xl"
                         data-testid={`teacher-photo-${teacher.id}`}
                       />
+                      
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
                     </div>
-                    <h3 className="text-lg font-bold gradient-text mb-2">{teacher.name}</h3>
-                    <Badge className="vibrant-btn mb-4" data-testid={`teacher-position-${teacher.id}`}>
+                    <h3 className="text-xl font-bold gradient-text mb-2 leading-tight">{teacher.name}</h3>
+                    <Badge className="vibrant-btn mb-6 px-4 py-2 text-sm" data-testid={`teacher-position-${teacher.id}`}>
                       {teacher.position}
                     </Badge>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-5">
                     <div>
-                      <h4 className="text-sm font-semibold text-primary mb-2">Keahlian</h4>
+                      <h4 className="text-base font-semibold text-primary mb-3">Keahlian</h4>
                       <div className="flex flex-wrap gap-2">
                         {teacher.expertise.map((skill, idx) => (
-                          <Badge key={idx} variant="outline" className="text-xs border-accent/30 text-accent">
+                          <Badge key={idx} variant="outline" className="text-sm border-accent/40 text-accent px-3 py-1 bg-accent/10">
                             {skill}
                           </Badge>
                         ))}
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-2 text-sm text-muted-foreground">
+                    <div className="grid grid-cols-1 gap-3 text-sm text-muted-foreground">
                       <div className="flex items-center gap-2">
                         <GraduationCap className="w-4 h-4 text-primary" />
                         <span>{teacher.education}</span>
@@ -198,10 +207,10 @@ export default function TeacherStaff() {
                       </div>
                     </div>
 
-                    <div className="flex justify-center gap-2 pt-4">
+                    <div className="flex justify-center gap-2 pt-6">
                       <button
                         onClick={() => setSelectedTeacher(teacher)}
-                        className="flex-1 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors duration-300 text-sm font-medium"
+                        className="flex-1 px-6 py-3 bg-gradient-to-r from-primary/15 to-accent/15 hover:from-primary/25 hover:to-accent/25 text-primary rounded-xl transition-all duration-300 text-sm font-semibold border border-primary/20 hover:border-primary/40 shadow-lg hover:shadow-primary/20"
                         data-testid={`view-profile-${teacher.id}`}
                       >
                         Lihat Profil
