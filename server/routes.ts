@@ -123,10 +123,18 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Enhanced validation schema for contact form - matches frontend validation
+  const contactFormSchema = insertContactMessageSchema.extend({
+    name: z.string().trim().min(2, 'Nama wajib diisi (minimal 2 karakter)'),
+    email: z.string().trim().email('Format email tidak valid'),
+    subject: z.string().trim().min(3, 'Subjek wajib diisi (minimal 3 karakter)'),
+    message: z.string().trim().min(10, 'Pesan terlalu singkat (minimal 10 karakter)'),
+  });
+
   // Contact endpoints
   app.post("/api/contact", async (req, res) => {
     try {
-      const validatedData = insertContactMessageSchema.parse(req.body);
+      const validatedData = contactFormSchema.parse(req.body);
       const message = await storage.createContactMessage(validatedData);
       
       res.json({ 

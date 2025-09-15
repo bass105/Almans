@@ -1,11 +1,23 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { insertContactMessageSchema, type InsertContactMessage } from "@shared/schema";
+import { apiRequest } from "@/lib/queryClient";
+import { z } from "zod";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Youtube, MessageCircle, Navigation } from "lucide-react";
 
 const contactInfo = [
@@ -56,90 +68,49 @@ const transportationInfo = [
   }
 ];
 
+// Enhanced validation schema with proper rules
+const formSchema = insertContactMessageSchema.extend({
+  name: z.string().trim().min(2, 'Nama wajib diisi (minimal 2 karakter)'),
+  email: z.string().trim().email('Format email tidak valid'),
+  subject: z.string().trim().min(3, 'Subjek wajib diisi (minimal 3 karakter)'),
+  message: z.string().trim().min(10, 'Pesan terlalu singkat (minimal 10 karakter)'),
+});
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+  const form = useForm<InsertContactMessage>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: "",
+    },
+    mode: 'onChange',
+  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+  const contactMutation = useMutation({
+    mutationFn: async (data: InsertContactMessage) => {
+      return await apiRequest("POST", "/api/contact", data);
+    },
+    onSuccess: () => {
       toast({
-        title: "Error",
-        description: "Mohon lengkapi semua field yang diperlukan.",
-        variant: "destructive"
+        title: "Pesan Berhasil Dikirim!",
+        description: "Tim kami akan segera menghubungi Anda. Terima kasih atas minat Anda!",
       });
-      return;
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
+      form.reset();
+    },
+    onError: (error: Error) => {
       toast({
-        title: "Error",
-        description: "Format email tidak valid. Mohon masukkan email yang benar.",
-        variant: "destructive"
+        title: "Gagal Mengirim Pesan",
+        description: error.message || "Terjadi kesalahan. Silakan coba lagi.",
+        variant: "destructive",
       });
-      return;
-    }
+    },
+  });
 
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        toast({
-          title: "Pesan Berhasil Dikirim!",
-          description: "Tim kami akan segera menghubungi Anda. Terima kasih atas minat Anda!",
-        });
-        
-        // Reset form
-        setFormData({
-          name: "",
-          email: "",
-          subject: "",
-          message: ""
-        });
-      } else {
-        toast({
-          title: "Gagal Mengirim Pesan",
-          description: result.message || "Terjadi kesalahan. Silakan coba lagi.",
-          variant: "destructive"
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Koneksi Bermasalah",
-        description: "Tidak dapat mengirim pesan. Periksa koneksi internet Anda dan coba lagi.",
-        variant: "destructive"
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+  const onSubmit = (data: InsertContactMessage) => {
+    contactMutation.mutate(data);
   };
 
   return (
@@ -239,70 +210,92 @@ export default function Contact() {
               <Card className="glass-effect border-border" data-testid="contact-form">
                 <CardContent className="p-8">
                   <h3 className="text-2xl font-bold text-foreground mb-6">Kirim Pesan</h3>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="name" className="text-foreground">Nama Lengkap</Label>
-                        <Input
-                          id="name"
+                  <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <FormField
+                          control={form.control}
                           name="name"
-                          type="text"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Masukkan nama lengkap"
-                          className="mt-2"
-                          data-testid="input-name"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-foreground">Nama Lengkap</FormLabel>
+                              <FormControl>
+                                <Input
+                                  placeholder="Masukkan nama lengkap"
+                                  data-testid="input-name"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
-                      </div>
-                      <div>
-                        <Label htmlFor="email" className="text-foreground">Email</Label>
-                        <Input
-                          id="email"
+                        <FormField
+                          control={form.control}
                           name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="nama@email.com"
-                          className="mt-2"
-                          data-testid="input-email"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-foreground">Email</FormLabel>
+                              <FormControl>
+                                <Input
+                                  type="email"
+                                  placeholder="nama@email.com"
+                                  data-testid="input-email"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
                         />
                       </div>
-                    </div>
-                    <div>
-                      <Label htmlFor="subject" className="text-foreground">Subjek</Label>
-                      <Input
-                        id="subject"
+                      <FormField
+                        control={form.control}
                         name="subject"
-                        type="text"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        placeholder="Subjek pesan"
-                        className="mt-2"
-                        data-testid="input-subject"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-foreground">Subjek</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Subjek pesan"
+                                data-testid="input-subject"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
-                    <div>
-                      <Label htmlFor="message" className="text-foreground">Pesan</Label>
-                      <Textarea
-                        id="message"
+                      <FormField
+                        control={form.control}
                         name="message"
-                        rows={4}
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Tulis pesan Anda..."
-                        className="mt-2 resize-none"
-                        data-testid="textarea-message"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel className="text-foreground">Pesan</FormLabel>
+                            <FormControl>
+                              <Textarea
+                                rows={4}
+                                placeholder="Tulis pesan Anda..."
+                                className="resize-none"
+                                data-testid="textarea-message"
+                                {...field}
+                              />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
                       />
-                    </div>
-                    <Button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-primary-foreground font-semibold transition-all duration-300 transform hover:scale-105 disabled:transform-none"
-                      data-testid="button-submit-contact"
-                    >
-                      {isSubmitting ? "Mengirim Pesan..." : "Kirim Pesan"}
-                    </Button>
-                  </form>
+                      <Button
+                        type="submit"
+                        disabled={contactMutation.isPending || !form.formState.isValid}
+                        className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-primary-foreground font-semibold transition-all duration-300 transform hover:scale-105 disabled:transform-none"
+                        data-testid="button-submit-contact"
+                        aria-busy={contactMutation.isPending}
+                      >
+                        {contactMutation.isPending ? "Mengirim Pesan..." : "Kirim Pesan"}
+                      </Button>
+                    </form>
+                  </Form>
                 </CardContent>
               </Card>
             </motion.div>
