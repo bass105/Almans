@@ -63,6 +63,7 @@ export default function Contact() {
     subject: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -73,7 +74,7 @@ export default function Contact() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -86,19 +87,59 @@ export default function Contact() {
       return;
     }
 
-    // Simulate form submission
-    toast({
-      title: "Pesan Berhasil Dikirim!",
-      description: "Tim kami akan segera menghubungi Anda.",
-    });
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      toast({
+        title: "Error",
+        description: "Format email tidak valid. Mohon masukkan email yang benar.",
+        variant: "destructive"
+      });
+      return;
+    }
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: ""
-    });
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Pesan Berhasil Dikirim!",
+          description: "Tim kami akan segera menghubungi Anda. Terima kasih atas minat Anda!",
+        });
+        
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: ""
+        });
+      } else {
+        toast({
+          title: "Gagal Mengirim Pesan",
+          description: result.message || "Terjadi kesalahan. Silakan coba lagi.",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Koneksi Bermasalah",
+        description: "Tidak dapat mengirim pesan. Periksa koneksi internet Anda dan coba lagi.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -255,10 +296,11 @@ export default function Contact() {
                     </div>
                     <Button
                       type="submit"
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-all duration-300 transform hover:scale-105"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed text-primary-foreground font-semibold transition-all duration-300 transform hover:scale-105 disabled:transform-none"
                       data-testid="button-submit-contact"
                     >
-                      Kirim Pesan
+                      {isSubmitting ? "Mengirim Pesan..." : "Kirim Pesan"}
                     </Button>
                   </form>
                 </CardContent>
