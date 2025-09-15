@@ -18,16 +18,25 @@ export default function HeroSection() {
       <div className="cyberpunk-lines"></div>
       <div className="neon-moving-circles"></div>
       
-      {/* Enhanced floating geometric shapes */}
+      {/* Symmetrically positioned floating geometric shapes */}
+      {/* Top Layer - Large shapes */}
       <div className="absolute top-20 left-10 w-24 h-24 bg-gradient-to-br from-primary/40 to-accent/30 rounded-full animate-float animate-pulse-glow blur-lg"></div>
-      <div className="absolute top-40 right-20 w-20 h-20 bg-gradient-to-br from-accent/40 to-primary/30 rounded-2xl animate-float blur-lg rotate-45" style={{ animationDelay: "2s" }}></div>
-      <div className="absolute bottom-40 left-20 w-16 h-16 bg-gradient-to-br from-primary/50 to-accent/40 rounded-full animate-float animate-sparkle blur-lg" style={{ animationDelay: "4s" }}></div>
-      <div className="absolute bottom-20 right-10 w-[4.5rem] h-[4.5rem] bg-gradient-to-br from-primary to-accent rounded-full animate-float blur-lg" style={{ animationDelay: "6s" }}></div>
+      <div className="absolute top-20 right-10 w-24 h-24 bg-gradient-to-br from-accent/40 to-primary/30 rounded-2xl animate-float blur-lg rotate-45" style={{ animationDelay: "3s" }}></div>
       
-      {/* Additional floating particles */}
-      <div className="absolute top-1/2 left-1/4 w-8 h-8 bg-accent/60 rounded-full animate-float opacity-70" style={{ animationDelay: "1s" }}></div>
-      <div className="absolute top-1/3 right-1/3 w-6 h-6 bg-primary/60 rounded-full animate-float opacity-70" style={{ animationDelay: "3s" }}></div>
-      <div className="absolute bottom-1/3 left-1/3 w-10 h-10 bg-gradient-to-br from-primary/40 to-accent/40 rounded-full animate-float opacity-60" style={{ animationDelay: "5s" }}></div>
+      {/* Middle Layer - Medium shapes */}
+      <div className="absolute top-1/2 left-16 w-16 h-16 bg-gradient-to-br from-primary/50 to-accent/40 rounded-full animate-float animate-sparkle blur-lg" style={{ animationDelay: "1.5s" }}></div>
+      <div className="absolute top-1/2 right-16 w-16 h-16 bg-gradient-to-br from-accent/50 to-primary/40 rounded-2xl animate-float blur-lg rotate-12" style={{ animationDelay: "4.5s" }}></div>
+      
+      {/* Bottom Layer - Large shapes */}
+      <div className="absolute bottom-20 left-10 w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full animate-float blur-lg" style={{ animationDelay: "2s" }}></div>
+      <div className="absolute bottom-20 right-10 w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-2xl animate-float blur-lg rotate-45" style={{ animationDelay: "5s" }}></div>
+      
+      {/* Small accent particles - perfectly mirrored */}
+      <div className="absolute top-1/3 left-1/4 w-8 h-8 bg-accent/60 rounded-full animate-float opacity-70" style={{ animationDelay: "0.5s" }}></div>
+      <div className="absolute top-1/3 right-1/4 w-8 h-8 bg-primary/60 rounded-full animate-float opacity-70" style={{ animationDelay: "3.5s" }}></div>
+      
+      <div className="absolute bottom-1/3 left-1/4 w-6 h-6 bg-primary/50 rounded-full animate-float opacity-60" style={{ animationDelay: "2.5s" }}></div>
+      <div className="absolute bottom-1/3 right-1/4 w-6 h-6 bg-accent/50 rounded-full animate-float opacity-60" style={{ animationDelay: "4s" }}></div>
       
       <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-8 lg:px-12 pt-24">
         <div className="relative min-h-screen flex items-center">
@@ -44,15 +53,15 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-background/10 to-background/50 z-[5]" />
           </div>
 
-          {/* Content - Symmetrical Layout */}
+          {/* Content - Perfectly Balanced Layout */}
           <div className="relative z-20 w-full">
-            <div className="grid lg:grid-cols-5 gap-8 lg:gap-12 items-center">
-              {/* Left Side - Large Text (3 columns) */}
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
+              {/* Left Side - Main Content */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1 }}
-                className="lg:col-span-3 space-y-8"
+                className="space-y-8 flex flex-col justify-center"
               >
                 <div className="space-y-6">
                   <motion.h1 
@@ -138,32 +147,41 @@ export default function HeroSection() {
                 </motion.div>
               </motion.div>
               
-              {/* Right Side - Stats and Info (2 columns) */}
+              {/* Right Side - Enhanced Stats Card */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="lg:col-span-2 flex justify-center lg:justify-end"
+                className="flex justify-center items-center"
               >
-                <div className="glass-effect rounded-3xl p-8 lg:p-10 backdrop-blur-lg border border-primary/20 shadow-2xl w-full max-w-md">
-                  <div className="space-y-8">
-                    <div className="text-center">
-                      <h3 className="text-heading-4 font-bold gradient-text mb-3">Profil Sekolah</h3>
-                      <p className="text-body-md text-muted-foreground">Sejak 1995</p>
-                    </div>
+                <div className="glass-effect rounded-3xl p-8 lg:p-12 backdrop-blur-lg border border-primary/20 shadow-2xl w-full max-w-lg">
+                  <div className="space-y-10">
+                    <motion.div 
+                      className="text-center"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.5 }}
+                    >
+                      <h3 className="text-heading-3 font-bold gradient-text mb-3">Profil Sekolah</h3>
+                      <p className="text-body-lg text-muted-foreground font-medium">Sejak 1995</p>
+                      <div className="w-16 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-4 rounded-full"></div>
+                    </motion.div>
                     
-                    <div className="grid grid-cols-1 gap-6 text-center">
+                    <div className="grid grid-cols-1 gap-6">
                       {stats.map((stat, index) => (
                         <motion.div
                           key={index}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-                          className="space-y-2 p-4 rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10 hover:border-primary/20 transition-all duration-300"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.6, delay: 0.8 + index * 0.15 }}
+                          className="group relative overflow-hidden p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-accent/10 border border-primary/20 hover:border-primary/40 transition-all duration-500 hover:shadow-lg hover:shadow-primary/20"
                           data-testid={`stat-${stat.label.toLowerCase().replace(/\s+/g, "-")}`}
                         >
-                          <div className="text-heading-2 font-black gradient-text">{stat.value}</div>
-                          <div className="text-body-sm text-muted-foreground font-medium tracking-wide">{stat.label}</div>
+                          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          <div className="relative z-10 text-center space-y-3">
+                            <div className="text-heading-1 font-black gradient-text group-hover:scale-105 transition-transform duration-300">{stat.value}</div>
+                            <div className="text-body-md text-muted-foreground font-semibold tracking-wide">{stat.label}</div>
+                          </div>
                         </motion.div>
                       ))}
                     </div>

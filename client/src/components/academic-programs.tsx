@@ -100,38 +100,50 @@ export default function AcademicPrograms() {
           </p>
         </motion.div>
 
-        {/* Study Programs */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+        {/* Enhanced Study Programs - Perfect Balance */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 mb-20">
           {Object.entries(programs).map(([key, program], index) => {
             const IconComponent = program.icon;
             return (
               <motion.div
                 key={key}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                initial={{ opacity: 0, x: index === 0 ? -50 : 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
                 viewport={{ once: true }}
               >
-                <Card className="glass-effect border-primary/20 card-hover h-full" data-testid={`program-${key}`}>
-                  <CardContent className="p-8">
-                    <div className="flex items-center mb-6">
-                      <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mr-4 animate-sparkle ${index === 0 ? 'vibrant-btn' : 'bg-gradient-to-br from-accent to-primary'}`}>
-                        <IconComponent className="w-8 h-8 text-primary-foreground" />
+                <Card className="glass-effect border-primary/20 card-hover h-full group relative overflow-hidden" data-testid={`program-${key}`}>
+                  <div className={`absolute inset-0 ${index === 0 ? 'bg-gradient-to-br from-primary/5 via-transparent to-accent/5' : 'bg-gradient-to-br from-accent/5 via-transparent to-primary/5'} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+                  <CardContent className="p-10 relative z-10">
+                    <div className="flex items-center gap-6 mb-8">
+                      <div className={`w-20 h-20 rounded-3xl flex items-center justify-center animate-sparkle group-hover:scale-110 transition-transform duration-300 ${index === 0 ? 'vibrant-btn' : 'bg-gradient-to-br from-accent to-primary'}`}>
+                        <IconComponent className="w-10 h-10 text-primary-foreground" />
                       </div>
-                      <div>
-                        <h3 className="text-2xl font-bold gradient-text">{program.title}</h3>
-                        <p className="text-muted-foreground">{program.subtitle}</p>
+                      <div className="flex-1">
+                        <h3 className="text-3xl font-bold gradient-text mb-2">{program.title}</h3>
+                        <p className="text-lg text-muted-foreground">{program.subtitle}</p>
+                        <div className={`w-12 h-1 ${index === 0 ? 'bg-gradient-to-r from-primary to-accent' : 'bg-gradient-to-r from-accent to-primary'} rounded-full mt-3`}></div>
                       </div>
                     </div>
-                    <p className="text-muted-foreground mb-6">
+                    <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
                       {program.description}
                     </p>
-                    <div className="space-y-3">
+                    <div className="space-y-4">
+                      <h4 className="text-lg font-semibold text-foreground mb-4">Mata Pelajaran Utama:</h4>
                       {program.subjects.map((subject, subIndex) => (
-                        <div key={subIndex} className="flex items-center">
-                          <Check className={`w-4 h-4 mr-3 flex-shrink-0 ${index === 0 ? 'text-primary' : 'text-accent'}`} />
-                          <span className="text-muted-foreground">{subject}</span>
-                        </div>
+                        <motion.div 
+                          key={subIndex} 
+                          className="flex items-center group/subject"
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.5, delay: 0.4 + subIndex * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center mr-4 ${index === 0 ? 'bg-primary/20 group-hover/subject:bg-primary/30' : 'bg-accent/20 group-hover/subject:bg-accent/30'} transition-colors duration-300`}>
+                            <Check className={`w-4 h-4 ${index === 0 ? 'text-primary' : 'text-accent'}`} />
+                          </div>
+                          <span className="text-muted-foreground text-lg">{subject}</span>
+                        </motion.div>
                       ))}
                     </div>
                   </CardContent>
